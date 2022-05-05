@@ -2,34 +2,35 @@ import React, { useReducer } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
 const reducer = (state, action) => {
-  switch (action.counting) {
+  switch (action.countOn) {
     case "increase":
-      return state + 1;
+      return { ...state, count: state.count + action.counting };
     case "decrease":
-      return state - 1;
+      return { ...state, count: state.count - action.counting };
     default:
       return state;
   }
 };
 
 const CounterScreen = () => {
-  const [state, runMyReducer] = useReducer(reducer, 0);
+  const [state, runMyReducer] = useReducer(reducer, { count: 0 });
+  const { count } = state;
 
   return (
     <View>
       <Button
         title="increase"
         onPress={() => {
-          runMyReducer({ counting: "increase" });
+          runMyReducer({ countOn: "increase", counting: 1 });
         }}
       />
       <Button
         title="decrease"
         onPress={() => {
-          runMyReducer({ counting: "decrease" });
+          runMyReducer({ countOn: "decrease", counting: 1 });
         }}
       />
-      <Text>Current Count: {state}</Text>
+      <Text>Current Count: {count}</Text>
     </View>
   );
 };
