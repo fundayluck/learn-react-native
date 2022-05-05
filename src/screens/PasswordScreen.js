@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 
 const PasswordScreen = () => {
   const [password, setPassword] = useState("");
-  console.log(password);
+
   return (
     <View>
       <Text>Enter Password:</Text>
